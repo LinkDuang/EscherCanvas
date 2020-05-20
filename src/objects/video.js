@@ -25,12 +25,14 @@ class Video extends EscherBaseObject {
 
         // this.test()
     }
-
-    getCuts(){
+    setPosistion(v) {
+        this.posistion = v
+    }
+    getCuts() {
         return {
             width: this.containerSize.width - this.size.width,
             height: this.containerSize.height - this.size.height,
-        } 
+        }
     }
 
     _根据宽度计算高度(width) {
@@ -55,7 +57,7 @@ class Video extends EscherBaseObject {
     setSize(w, h) {
         let h2 = this._根据宽度计算高度(w)
         let w2 = w
-        if(h2 < this.containerSize.height){
+        if (h2 < this.containerSize.height) {
             let cut = 0.5 * (this.containerSize.height - h2) //两者差值的一半
             let v = Vector.new(0, cut, -1)
             this.setPosistion(v)

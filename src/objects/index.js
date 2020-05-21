@@ -1,11 +1,11 @@
 import Line from './line'
-import Video from './video'
+import Polygon from './polygon'
 import Triangle from './triangle'
 
 
 const Objects = {
     Line,
-    Video,
+    Polygon,
     Triangle,
 }
 export default Objects

@@ -11,7 +11,7 @@ class Line extends EscherBaseObject {
             end: null,
         }
 
-        this.color = Color.pink()
+        this.color = Color.new(255, 192, 203, 0.5)
         this.registerProps(props)
         this.marker = {}
     }
@@ -59,7 +59,7 @@ class Line extends EscherBaseObject {
         c.beginPath()
         c.moveTo(start.x, start.y)
         c.lineTo(end.x, end.y)
-        c.lineWidth = 2
+        c.lineWidth = 1
         c.strokeStyle = this.color.str()
         c.stroke()
         c.closePath()
@@ -76,7 +76,7 @@ class Line extends EscherBaseObject {
 
     drawText(context) {
         context.fillStyle = "black"
-        context.font = "normal small-caps normal 18px sans-serif"
+        context.font = "normal small-caps normal 14px sans-serif"
         context.textBaseline = 'middle'
 
         let { start, end } = this.marker

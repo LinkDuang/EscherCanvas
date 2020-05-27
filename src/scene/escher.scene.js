@@ -24,6 +24,11 @@ class EscherScene {
         this.activeLayerKey = "defaultLayer" // 当前操作的图层
     }
 
+    registerCanvas(props) {
+        this.canvas = props.canvas
+        this.context = props.context
+    }
+
     // 注册系列方法
     registerContinuousRendering() {
         let { canvas, context } = this
@@ -43,41 +48,55 @@ class EscherScene {
         }, 1000 / this.fps)
     }
 
-    registerCanvas(props) {
-        this.canvas = props.canvas
-        this.context = props.context
-    }
-
-    registerLayer(layer) {
-        let key = layer.name
-        this.layers[key] = layer
-    }
-
-    registerObject(obj) {
-        let { layers, activeLayerKey } = this
-        obj.inLayer = layers[activeLayerKey]
-        this.objects.push(obj)
-    }
-
-    // 设置
-    setLayer(name) {
-        // 切换当前运行的图层
-        this.activeLayerKey = name
-    }
 
     setFps(fps) {
         this.fps = fps
     }
 
-    // 查询方法
+    // about layers
+    registerLayer(layer) {
+        let key = layer.name
+        if (this.layers[key] === undefined) {
+            this.layers[key] = layer
+        }
+        return this.layers[key]
+        // todo 如果已经注册了，报错，提示不能再注册，除非手动覆盖？或者使用 setting
+    }
+
+    setLayer(name) {
+        // 切换当前运行的图层
+        this.activeLayerKey = name
+        return this.layers[this.activeLayerKey]
+    }
+
+    getLayers() {
+        return {
+            layers: this.layers,
+            key: this.activeLayerKey,
+        }
+    }
+
     getActiveLayer() {
         let { layers, activeLayerKey } = this
-        // 这个应该在 某种特殊查询下才启用
-        // return {
-        //     key: activeLayerKey,
-        //     layer: layers[activeLayerKey],
-        // }
         return layers[activeLayerKey]
+    }
+
+
+
+    registerObject(obj) {
+        let { layers, activeLayerKey } = this
+
+        let id = obj.onlyId
+        let registed = id && this.objects.find(i => i.onlyId === obj.onlyId)
+        if (id && registed) {
+            // console.log(registed, '检查搜索的结果')
+            // 已经注册过了，并且是唯一的 id，不允许再注册了
+            return registed
+        } else {
+            obj.inLayer = layers[activeLayerKey]
+            this.objects.push(obj)
+            return obj
+        }
     }
 
 
@@ -100,7 +119,10 @@ class EscherScene {
         // if (this.justOne === true) {
         //     return
         // }
-        let filted = this.objects.filter(i => {
+        let f1 = this.objects.filter(i => {
+            return i.doDraw
+        })
+        let filted = f1.filter(i => {
             return i.inLayer.display === "show"
         })
         let sorted = filted.sort((a, b) => {

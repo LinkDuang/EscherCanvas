@@ -1,7 +1,7 @@
 # Escher Canvas
 *v 2020.05.19*
 
-# 初见篇
+
 
 ## 安装
 使用 npm
@@ -9,6 +9,7 @@
 
 使用 yarn
 > `yarn add escher-canvas`
+
 
 ## 使用
 在项目中使用
@@ -68,3 +69,91 @@ addLine() {
 一旦使用 `registerObject` 添加完物体之后，画布上就会显示你画的这条线，由于 `Line` 是内建的类型，因此你可以直接在 `Objects` 里面直接找到它并使用。
 
 > todo 这里是完整的 原生 JavaScript 示例程序、React 示例程序、Vue 示例程序
+
+
+## Scene
+
+场景里面可以注册各种各样的对象，初始化的时候必须注册一个`canvas`对象来保证有画布可用，之后可以注册包括 `Layer`、`Object` 、`D3Object` 等物体来展示。
+
+
+### Scene.new()
+静态方法，创建一个 scene 对象并返回
+```javascript
+let scene = Escher.Scene.new()
+```
+
+### Scene.registerCanvas({canvas, context})
+传入一个 `canvas` 元素和 `context` 上下文，让 `scene` 知道该在哪里绘制
+```javascript
+let domCanvas = document.querySelector("canvas")
+let context = domCanvas.getContext('2d')
+
+scene.registerCanvas({
+    canvas: domCanvas,
+    context: context,    
+})
+```
+
+### Scene.registerContinuousRendering()
+调用该方法后，会不停刷新画布
+```javascript
+scene.registerContinuousRendering()
+```
+
+
+### Scene.setFps(fps)
+调用该方法后，设置刷新的 fps，
+```javascript
+scene.setFps(30) // 30 帧每秒
+```
+
+### Scene.registerLayer(layer)
+调用该方法后，会往 `scene` 里注册一个 `Layer` 对象，场景允许有多个图层，但禁止 `Layer` 出现重名。
+
+> 返回一个 layer 对象
+```javascript
+let layer = Escher.Layer.new({
+    name: 'name_dududu',
+})
+scene.registerLayer(layer)
+```
+
+### Scene.setLayer(layername)
+通常，`scene` 里会有一个默认的 `layer` 被激活，在添加`Object` 的时候只会往激活的 `layer` 里面添加。
+
+可以用这个方法来切换当前激活的 layer
+
+返回一个 layer 对象
+```javascript
+scene.setLayer("name_dududu")
+```
+
+### Scene.getActiveLayer()
+返回当前正被激活的 layer 对象，方便查询
+```javascript
+scene.getActiveLayer()
+```
+
+### Scene.registerObject(obj)
+往 `scene` 里注册一个 `Object` 对象，场景允许有多个 `Object`，`Object` 所属的图层是当前正被激活的图层。
+
+```javascript
+// 传入一个 Escher object 对象
+// 返回一个 Escher object 对象
+let line = Line.new()
+scene.registerObject(line)
+```
+
+
+
+
+
+
+## Layer
+`Layer` 就是图层，一个物体会处在某一个图层里，有了图层之后，我们可以很方便地决定绘制的先后顺序，也可以很方便地隐藏某一个图层，甚至做出扭曲、平移等等操作。
+
+`Scene` 在初始化的时候会自动新建一个 `Layer`，如果你没有注册  `Layer` 并使用的话，你添加的所有物体会处于这个默认的 `Layer` 中
+
+
+
+

@@ -3,6 +3,8 @@ class EscherBaseObject {
     constructor() {
         this.useUpdate = {}
         this.inLayer = {}
+        this.doDraw = true
+        this.onlyId = null
     }
 
     static new(...props) {
@@ -10,6 +12,7 @@ class EscherBaseObject {
     }
 
     useRegistedToUpdate() {
+        // 根据注册的 update 效果来更新自己
         let keys = Object.keys(this.useUpdate)
         if (keys.length > 0) {
             for (let k of keys) {
@@ -21,11 +24,13 @@ class EscherBaseObject {
     }
 
     registerUpdate(name, callback) {
+        // 为物体注册一个 update 效果，接收一个名字和回调
         let useUpdate = callback.bind(this)
         this.useUpdate[name] = useUpdate
     }
 
     unRegisterUpdate() {
+        // 注销一个 update 效果
         this.useUpdate[name] = null
     }
 

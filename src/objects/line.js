@@ -1,5 +1,6 @@
 // 线
 import Classes from '../classes'
+import Vector from '../classes/vector'
 let { EscherBaseObject, Color } = Classes
 
 class Line extends EscherBaseObject {
@@ -7,13 +8,14 @@ class Line extends EscherBaseObject {
         super(props)
 
         this.posistion = {
-            start: null,
-            end: null,
+            start: Vector.new(0, 0),
+            end: Vector.new(0, 0),
         }
 
         this.color = Color.new(255, 192, 203, 0.5)
         this.registerProps(props)
         this.marker = {}
+        this.offset = Vector.new(0, 0)
     }
 
     registerProps(props) {
@@ -40,6 +42,10 @@ class Line extends EscherBaseObject {
     setMarker(point, text) {
         this.marker[point] = text
     }
+    setOffset(ofs) {
+        this.offset = ofs
+    }
+
 
     update() {
 
@@ -55,10 +61,10 @@ class Line extends EscherBaseObject {
 
     drawLine(context, start, end) {
         let c = context
-
+        let {x, y}= this.offset
         c.beginPath()
-        c.moveTo(start.x, start.y)
-        c.lineTo(end.x, end.y)
+        c.moveTo(start.x + x, start.y + y)
+        c.lineTo(end.x + x, end.y + y)
         c.lineWidth = 1
         c.strokeStyle = this.color.str()
         c.stroke()
@@ -82,15 +88,14 @@ class Line extends EscherBaseObject {
         let { start, end } = this.marker
         if (start) {
             let { x, y } = this.posistion.start
-            context.fillText(start, x, y)
-
+            let t = `[${start}]: ${x}, ${y}`
+            context.fillText(t, x, y)
         }
         if (end) {
             let { x, y } = this.posistion.end
-            context.fillText(end, x, y)
-
+            let t = `[${end}]: ${x}, ${y}`
+            context.fillText(t, x, y)
         }
-
     }
 }
 

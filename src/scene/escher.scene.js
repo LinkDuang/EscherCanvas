@@ -14,6 +14,7 @@ class EscherScene {
         this.justOne = false
 
         this.fps = 10
+        this.pause = false
         this.canvas = null
         this.context = null
 
@@ -41,6 +42,9 @@ class EscherScene {
 
         // 更新方案 2
         setTimeout(() => {
+            if (this.pause == true) {
+                return
+            }
             context.clearRect(0, 0, canvas.width, canvas.height)
             this.update()
             this.draw()
@@ -119,6 +123,7 @@ class EscherScene {
         // if (this.justOne === true) {
         //     return
         // }
+
         let f1 = this.objects.filter(i => {
             return i.doDraw
         })
@@ -131,6 +136,8 @@ class EscherScene {
         for (let i of sorted) {
             i.draw(this.context)
         }
+        // console.log('当前场景绘制的length', sorted.length)
+
         // this.justOne = true
     }
 }

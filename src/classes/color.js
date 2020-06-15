@@ -13,13 +13,22 @@ class Color {
 
     // 常见颜色
     static white() {
+        return new this(255, 255, 255, 1)
+    }
+    static black() {
         return new this(0, 0, 0, 1)
     }
     static pink() {
         return new this(255, 192, 203, 1)
     }
+    static red() {
+        return new this(255, 0, 0, 1)
+    }
     static green() {
         return new this(0, 255, 0, 1)
+    }
+    static blue() {
+        return new this(0, 0, 255, 1)
     }
 
     str() {

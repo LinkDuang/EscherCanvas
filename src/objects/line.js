@@ -42,6 +42,7 @@ class Line extends EscherBaseObject {
     setMarker(point, text) {
         this.marker[point] = text
     }
+
     setOffset(ofs) {
         this.offset = ofs
     }
@@ -61,7 +62,7 @@ class Line extends EscherBaseObject {
 
     drawLine(context, start, end) {
         let c = context
-        let {x, y}= this.offset
+        let { x, y } = this.offset
         c.beginPath()
         c.moveTo(start.x + x, start.y + y)
         c.lineTo(end.x + x, end.y + y)
@@ -86,10 +87,11 @@ class Line extends EscherBaseObject {
         context.textBaseline = 'middle'
 
         let { start, end } = this.marker
+        let o = this.offset
         if (start) {
             let { x, y } = this.posistion.start
-            let t = `[${start}]: ${x}, ${y}`
-            context.fillText(t, x, y)
+            let t = `[${start}]: ${x + o.x}, ${y + o.y}`
+            context.fillText(t, x + o.x, y + o.y)
         }
         if (end) {
             let { x, y } = this.posistion.end

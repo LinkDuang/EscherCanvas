@@ -29,7 +29,7 @@ class EscherBaseObject {
         this.useUpdate[name] = useUpdate
     }
 
-    unRegisterUpdate() {
+    unRegisterUpdate(name) {
         // 注销一个 update 效果
         this.useUpdate[name] = null
     }

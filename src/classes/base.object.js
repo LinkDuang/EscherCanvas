@@ -7,10 +7,6 @@ class EscherBaseObject {
         this.onlyId = null
     }
 
-    static new(...props) {
-        return new this(...props)
-    }
-
     useRegistedToUpdate() {
         // 根据注册的 update 效果来更新自己
         let keys = Object.keys(this.useUpdate)

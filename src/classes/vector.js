@@ -5,10 +5,6 @@ class Vector {
         this.y = y
         this.z = z
     }
-
-    static new(...props) {
-        return new this(...props)
-    }
 }
 
 export default Vector

@@ -1,21 +1,22 @@
 // 线
-import Classes from '../classes'
 import Vector from '../classes/vector'
-let { EscherBaseObject, Color } = Classes
+import Color from '../classes/color'
+import EscherBaseObject from '../classes/base.object'
+
 
 class Line extends EscherBaseObject {
     constructor(props = {}) {
         super(props)
 
         this.posistion = {
-            start: Vector.new(0, 0),
-            end: Vector.new(0, 0),
+            start: new Vector(0, 0),
+            end: new Vector(0, 0),
         }
 
-        this.color = Color.new(255, 192, 203, 0.5)
+        this.color = new Color(255, 192, 203, 0.5)
         this.registerProps(props)
         this.marker = {}
-        this.offset = Vector.new(0, 0)
+        this.offset = new Vector(0, 0)
     }
 
     registerProps(props) {

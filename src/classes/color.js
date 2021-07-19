@@ -7,10 +7,6 @@ class Color {
         this.a = a ? a : 1 // 0-1
     }
 
-    static new(...props) {
-        return new this(...props)
-    }
-
     // 常见颜色
     static white() {
         return new this(255, 255, 255, 1)

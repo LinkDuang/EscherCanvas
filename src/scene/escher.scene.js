@@ -5,14 +5,11 @@ class EscherScene {
     // 场景，目的是往场景里添加一个个物体
     // 场景的属性包含了 大小、帧率
     // 场景的方法包含了
-    static new(...props) {
-        return new this(...props)
-    }
 
     constructor(config = {}) {
         // TODO 可以通过 config 方式来传
         this.justOne = false
-
+        this.test=1
         this.fps = 10
         this.pause = false
         this.canvas = null
@@ -20,7 +17,7 @@ class EscherScene {
 
         this.objects = [] // 所有物体(放置在图层中)
 
-        let defaultLayer = EscherLayer.new({ name: "defaultLayer" })
+        let defaultLayer = new EscherLayer({ name: "defaultLayer" })
         this.layers = { defaultLayer } // 所有图层
         this.activeLayerKey = "defaultLayer" // 当前操作的图层
     }
@@ -136,7 +133,6 @@ class EscherScene {
         for (let i of sorted) {
             i.draw(this.context)
         }
-        // console.log('当前场景绘制的length', sorted.length)
 
         // this.justOne = true
     }

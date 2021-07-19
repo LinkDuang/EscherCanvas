@@ -33,10 +33,6 @@ class Brush {
 
     // 注意，画笔通常不设置颜色，因为物体的颜色通常由一个 color 传入
 
-    static new(...props) {
-        return new this(...props)
-    }
-
     constructor(brush) {
         brush = { ...brush, ...defaultBrushProps }
         this.brushStyle = brush

@@ -8,17 +8,17 @@
 
 // 第二种是一个多边形，只不过只有三个顶点的多边形而已
 // 先只在 2d 领域使用这种三角形
-import Classes from '../classes'
-let { EscherBaseObject, Vector } = Classes
+import Vector from '../classes/vector'
+import EscherBaseObject from '../classes/base.object'
 
 class Triangle extends EscherBaseObject {
     constructor(props) {
         super(props)
         // 三角形三个顶点(a, b, c)自然决定了其位置
         this.vertexs = {
-            a: Vector.new(360, 160),
-            b: Vector.new(500, 200),
-            c: Vector.new(510, 400),
+            a: new Vector(360, 160),
+            b: new Vector(500, 200),
+            c: new Vector(510, 400),
         }
 
         this.containerSize = {} // 容器 size
@@ -56,9 +56,9 @@ class Triangle extends EscherBaseObject {
         }
 
         this.vertexs = {
-            a: Vector.new(v.a_start, v.a_end),
-            b: Vector.new(v.b_start, v.b_end),
-            c: Vector.new(v.c_start, v.c_end),
+            a: new Vector(v.a_start, v.a_end),
+            b: new Vector(v.b_start, v.b_end),
+            c: new Vector(v.c_start, v.c_end),
         }
     }
 

@@ -3,10 +3,6 @@ let defaultProps = {
 }
 
 class EscherLayer {
-    static new(...props) {
-        return new this(...props)
-    }
-
     constructor(layer) {
         layer = {...defaultProps, ...layer}
         this.name = layer.name

@@ -1,14 +1,8 @@
 {
   "name": "escher-canvas",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "./src/index.js",
-  "files": [
-    "/lib"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [],
   "author": "Yuri",
   "license": "MIT",

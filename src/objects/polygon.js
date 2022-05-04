@@ -31,6 +31,11 @@ class Polygon extends EscherBaseObject {
         context.stroke()
         context.closePath()
 
+        // 位置(xy)，大小(wh)
+        ctx.rect(10, 10, 100, 100);
+        ctx.fill();
+        
+        
         if (this.devMode === true) {
             this.drawVertexsText(context)
         }

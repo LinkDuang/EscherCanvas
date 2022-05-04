@@ -1,4 +1,3 @@
-
 import EscherLayer from './escher.layer'
 // 场景
 class EscherScene {
@@ -9,7 +8,7 @@ class EscherScene {
     constructor(config = {}) {
         // TODO 可以通过 config 方式来传
         this.justOne = false
-        this.test=1
+        this.test = 1
         this.fps = 10
         this.pause = false
         this.canvas = null
@@ -17,9 +16,9 @@ class EscherScene {
 
         this.objects = [] // 所有物体(放置在图层中)
 
-        let defaultLayer = new EscherLayer({ name: "defaultLayer" })
+        let defaultLayer = new EscherLayer({ name: 'defaultLayer' })
         this.layers = { defaultLayer } // 所有图层
-        this.activeLayerKey = "defaultLayer" // 当前操作的图层
+        this.activeLayerKey = 'defaultLayer' // 当前操作的图层
     }
 
     registerCanvas(props) {
@@ -48,7 +47,6 @@ class EscherScene {
             this.registerContinuousRendering()
         }, 1000 / this.fps)
     }
-
 
     setFps(fps) {
         this.fps = fps
@@ -82,13 +80,11 @@ class EscherScene {
         return layers[activeLayerKey]
     }
 
-
-
     registerObject(obj) {
         let { layers, activeLayerKey } = this
 
         let id = obj.onlyId
-        let registed = id && this.objects.find(i => i.onlyId === obj.onlyId)
+        let registed = id && this.objects.find((i) => i.onlyId === obj.onlyId)
         if (id && registed) {
             // console.log(registed, '检查搜索的结果')
             // 已经注册过了，并且是唯一的 id，不允许再注册了
@@ -100,13 +96,13 @@ class EscherScene {
         }
     }
 
-
     // 绘制
     update() {
         // 读取所有的 objects, 然后依次调用他们的 update 方法
         for (let i of this.objects) {
-            i.update(this.context)
-            i.useRegistedToUpdate(this.context)
+            // i.update(this.context)
+            i.__updateForScene(this.context)
+            i.__useRegistedToUpdate(this.context)
         }
     }
 
@@ -121,17 +117,18 @@ class EscherScene {
         //     return
         // }
 
-        let f1 = this.objects.filter(i => {
+        let f1 = this.objects.filter((i) => {
             return i.doDraw
         })
-        let filted = f1.filter(i => {
-            return i.inLayer.display === "show"
+        let filted = f1.filter((i) => {
+            return i.inLayer.display === 'show'
         })
         let sorted = filted.sort((a, b) => {
             return a.inLayer.z - b.inLayer.z
         })
         for (let i of sorted) {
-            i.draw(this.context)
+            // i.draw(this.context)
+            i.__drawForScene(this.context)
         }
 
         // this.justOne = true

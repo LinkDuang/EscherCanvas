@@ -1,13 +1,13 @@
 // 线
 import Vector from '../classes/vector'
 import Color from '../classes/color'
-import EscherBaseObject from '../classes/base.object'
+// import EscherBaseObject from '../classes/base.object'
+import ObjectPrototype from '../classes/objectPrototype'
 
 
-class Line extends EscherBaseObject {
+class Line extends ObjectPrototype {
     constructor(props = {}) {
         super(props)
-
         this.posistion = {
             start: new Vector(0, 0),
             end: new Vector(0, 0),

@@ -1,4 +1,3 @@
-// 单个物体基类
 class ObjectPrototype {
     constructor() {
         this.child = null

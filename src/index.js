@@ -7,7 +7,7 @@ import Polygon from './objects/polygon'
 
 import EscherBaseObject from './classes/base.object'
 import ObjectPrototype from './classes/objectPrototype'
-import Brush from './classes/brush'
+// import Brush from './classes/brush'
 import Color from './classes/color'
 import Vector from './classes/vector'
 
@@ -19,7 +19,7 @@ export {
     Polygon,
     EscherBaseObject,
     ObjectPrototype,
-    Brush,
+    // Brush,
     Color,
     Vector,
 }

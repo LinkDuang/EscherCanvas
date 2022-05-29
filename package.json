@@ -9,10 +9,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup src/index.js --file dist/bundle.js --format umd --name 'Escher'"
+    "build": "rollup -c"
   },
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^2.75.3"
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "rollup": "^2.75.3",
+    "rollup-plugin-babel": "^4.4.0"
   }
 }

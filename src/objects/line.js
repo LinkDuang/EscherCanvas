@@ -1,7 +1,6 @@
 // 线
 import Vector from '../classes/vector'
 import Color from '../classes/color'
-// import EscherBaseObject from '../classes/base.object'
 import ObjectPrototype from '../classes/objectPrototype'
 
 

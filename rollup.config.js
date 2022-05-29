@@ -1,5 +1,4 @@
 // rollup.config.js
-// import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 
 export default {
@@ -10,9 +9,8 @@ export default {
     name: 'Escher',
   },
   plugins: [
-    // resolve(),
     babel({
-      exclude: 'node_modules/**', // 只编译我们的源代码
+      exclude: 'node_modules/**',
     }),
   ],
 }

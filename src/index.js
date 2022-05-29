@@ -12,14 +12,14 @@ import Color from './classes/color'
 import Vector from './classes/vector'
 
 export {
-    Scene,
-    Layer,
-    Line,
-    Triangle,
-    Polygon,
-    EscherBaseObject,
-    ObjectPrototype,
-    // Brush,
-    Color,
-    Vector,
+  Scene,
+  Layer,
+  Line,
+  Triangle,
+  Polygon,
+  EscherBaseObject,
+  ObjectPrototype,
+  // Brush,
+  Color,
+  Vector,
 }

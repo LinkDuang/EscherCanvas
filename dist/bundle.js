@@ -502,7 +502,7 @@ var Color = /*#__PURE__*/function () {
   return Color;
 }();
 
-var ObjectPrototype = /*#__PURE__*/function () {
+var ObjectPrototype$1 = /*#__PURE__*/function () {
   function ObjectPrototype() {
     _classCallCheck(this, ObjectPrototype);
 
@@ -714,70 +714,10 @@ var Line = /*#__PURE__*/function (_ObjectPrototype) {
   }]);
 
   return Line;
-}(ObjectPrototype);
+}(ObjectPrototype$1);
 
-// 单个物体基类
-var EscherBaseObject = /*#__PURE__*/function () {
-  function EscherBaseObject() {
-    _classCallCheck(this, EscherBaseObject);
-
-    this.useUpdate = {};
-    this.inLayer = {};
-    this.doDraw = true;
-    this.onlyId = null;
-  }
-
-  _createClass(EscherBaseObject, [{
-    key: "useRegistedToUpdate",
-    value: function useRegistedToUpdate() {
-      // 根据注册的 update 效果来更新自己
-      var keys = Object.keys(this.useUpdate);
-
-      if (keys.length > 0) {
-        var _iterator = _createForOfIteratorHelper(keys),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var k = _step.value;
-
-            if (this.useUpdate[k]) {
-              this.useUpdate[k](this);
-            }
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-      }
-    }
-  }, {
-    key: "registerUpdate",
-    value: function registerUpdate(name, callback) {
-      // 为物体注册一个 update 效果，接收一个名字和回调
-      var useUpdate = callback.bind(this);
-      this.useUpdate[name] = useUpdate;
-    }
-  }, {
-    key: "unRegisterUpdate",
-    value: function unRegisterUpdate(name) {
-      // 注销一个 update 效果
-      this.useUpdate[name] = null;
-    }
-  }, {
-    key: "update",
-    value: function update() {}
-  }, {
-    key: "draw",
-    value: function draw() {}
-  }]);
-
-  return EscherBaseObject;
-}();
-
-var Triangle = /*#__PURE__*/function (_EscherBaseObject) {
-  _inherits(Triangle, _EscherBaseObject);
+var Triangle = /*#__PURE__*/function (_ObjectPrototype) {
+  _inherits(Triangle, _ObjectPrototype);
 
   var _super = _createSuper(Triangle);
 
@@ -855,8 +795,8 @@ var Triangle = /*#__PURE__*/function (_EscherBaseObject) {
       context.lineTo(b.x, b.y);
       context.lineTo(c.x, c.y);
       context.lineTo(a.x, a.y);
-      context.strokeStyle = "white";
-      context.lineCap = "round";
+      context.strokeStyle = 'white';
+      context.lineCap = 'round';
       context.stroke();
       context.closePath();
 
@@ -867,8 +807,8 @@ var Triangle = /*#__PURE__*/function (_EscherBaseObject) {
   }, {
     key: "drawVertexsText",
     value: function drawVertexsText(context) {
-      context.fillStyle = "white";
-      context.font = "normal small-caps normal 18px sans-serif";
+      context.fillStyle = 'white';
+      context.font = 'normal small-caps normal 18px sans-serif';
       context.textBaseline = 'middle';
       var _this$vertexs2 = this.vertexs,
           a = _this$vertexs2.a,
@@ -881,10 +821,10 @@ var Triangle = /*#__PURE__*/function (_EscherBaseObject) {
   }]);
 
   return Triangle;
-}(EscherBaseObject);
+}(ObjectPrototype$1);
 
-var Polygon = /*#__PURE__*/function (_EscherBaseObject) {
-  _inherits(Polygon, _EscherBaseObject);
+var Polygon = /*#__PURE__*/function (_ObjectPrototype) {
+  _inherits(Polygon, _ObjectPrototype);
 
   var _super = _createSuper(Polygon);
 
@@ -944,13 +884,12 @@ var Polygon = /*#__PURE__*/function (_EscherBaseObject) {
   }]);
 
   return Polygon;
-}(EscherBaseObject);
+}(ObjectPrototype);
 
 exports.Color = Color;
-exports.EscherBaseObject = EscherBaseObject;
 exports.Layer = EscherLayer;
 exports.Line = Line;
-exports.ObjectPrototype = ObjectPrototype;
+exports.ObjectPrototype = ObjectPrototype$1;
 exports.Polygon = Polygon;
 exports.Scene = EscherScene;
 exports.Triangle = Triangle;

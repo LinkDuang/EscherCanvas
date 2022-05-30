@@ -1,6 +1,6 @@
 // 通过 n 个点来配置多边形，直接按多个点顺序绘制
 import Vector from '../classes/vector'
-import EscherBaseObject from '../classes/objectPrototype'
+import ObjectPrototype from '../classes/objectPrototype'
 
 class Polygon extends ObjectPrototype {
     constructor(props) {

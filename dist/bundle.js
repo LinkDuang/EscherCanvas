@@ -502,7 +502,7 @@ var Color = /*#__PURE__*/function () {
   return Color;
 }();
 
-var ObjectPrototype$1 = /*#__PURE__*/function () {
+var ObjectPrototype = /*#__PURE__*/function () {
   function ObjectPrototype() {
     _classCallCheck(this, ObjectPrototype);
 
@@ -714,7 +714,7 @@ var Line = /*#__PURE__*/function (_ObjectPrototype) {
   }]);
 
   return Line;
-}(ObjectPrototype$1);
+}(ObjectPrototype);
 
 var Triangle = /*#__PURE__*/function (_ObjectPrototype) {
   _inherits(Triangle, _ObjectPrototype);
@@ -821,7 +821,7 @@ var Triangle = /*#__PURE__*/function (_ObjectPrototype) {
   }]);
 
   return Triangle;
-}(ObjectPrototype$1);
+}(ObjectPrototype);
 
 var Polygon = /*#__PURE__*/function (_ObjectPrototype) {
   _inherits(Polygon, _ObjectPrototype);
@@ -889,7 +889,7 @@ var Polygon = /*#__PURE__*/function (_ObjectPrototype) {
 exports.Color = Color;
 exports.Layer = EscherLayer;
 exports.Line = Line;
-exports.ObjectPrototype = ObjectPrototype$1;
+exports.ObjectPrototype = ObjectPrototype;
 exports.Polygon = Polygon;
 exports.Scene = EscherScene;
 exports.Triangle = Triangle;

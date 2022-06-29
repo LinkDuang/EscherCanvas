@@ -1,7 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
@@ -280,6 +276,23 @@ var EscherScene = /*#__PURE__*/function () {
   }
 
   _createClass(EscherScene, [{
+    key: "autoRegisterCanvas",
+    value: function autoRegisterCanvas() {
+      var select = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'canvas';
+      var canvasDoms = document.querySelectorAll(select);
+
+      if (canvasDoms.length > 1) {
+        throw Error('Make sure there is only one canvas element in the UI, or pass in the exact selector to specify one of them. 请确保界面中只有一个 canvas 元素，或传入准确的选择器来指定其中一个。');
+      } else if (canvasDoms.length === 0) {
+        throw Error('The canvas element was not found, check the incoming selector. 未找到 canvas 元素，请检查传入的选择器。');
+      }
+
+      var canvas = canvasDoms[0];
+      this.canvas = canvas;
+      var context = canvas.getContext('2d');
+      this.context = context;
+    }
+  }, {
     key: "registerCanvas",
     value: function registerCanvas(props) {
       this.canvas = props.canvas;
@@ -886,11 +899,4 @@ var Polygon = /*#__PURE__*/function (_ObjectPrototype) {
   return Polygon;
 }(ObjectPrototype);
 
-exports.Color = Color;
-exports.Layer = EscherLayer;
-exports.Line = Line;
-exports.ObjectPrototype = ObjectPrototype;
-exports.Polygon = Polygon;
-exports.Scene = EscherScene;
-exports.Triangle = Triangle;
-exports.Vector = Vector;
+export { Color, EscherLayer as Layer, Line, ObjectPrototype, Polygon, EscherScene as Scene, Triangle, Vector };

@@ -1,7 +1,9 @@
 # Escher Canvas
-*v 2021.7.19*
+*v 2022.7.3*
 
-文档可能需要重新梳理，代码需要重构，将在 2022.7.10 之前发布。
+在 1.2.1 版本更新后：
+
+ObjectPrototype 对象名字将改为 ModelPrototype，请使用新命名（未来会删掉，请勿再使用）
 
 
 ## 安装
@@ -32,6 +34,14 @@ render(){
 ```javascript
 import { Scene } from 'escher-canvas'
 
+// 自动初始化上下文（推荐）
+componentDidMount(){
+    this.scene = new Scene()
+    this.scene.autoRegisterCanvas()
+    this.scene.registerContinuousRendering()
+}
+
+// 手动初始化上下文（适合同时存在多个 canvas 画布需要管理的情景）
 componentDidMount(){
     // 1，拿到 canvas 元素和上下文
     let domCanvas = document.querySelector("canvas")
@@ -47,7 +57,7 @@ componentDidMount(){
 }
 ```
 
-在此之后，使用 `this.scene.registerObject(obj)` 方法来添加一个个物体，具体使用如下：
+上面提到的两种方法任选一种即可，在此之后，使用 `this.scene.registerObject(obj)` 方法来添加一个个物体，具体使用如下：
 
 ```javascript
 import { Vector, Color, Line } from 'escher-canvas' // 向量、颜色、线

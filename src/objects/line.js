@@ -1,7 +1,7 @@
 // 线
 import Vector from '../classes/vector'
 import Color from '../classes/color'
-import ObjectPrototype from '../classes/objectPrototype'
+import ObjectPrototype from '../classes/model.prototype'
 
 
 class Line extends ObjectPrototype {

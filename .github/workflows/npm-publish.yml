@@ -10,14 +10,52 @@ on:
   workflow_dispatch:
 
 jobs:
-  just-publish-to-npm:
+  ci-to-npm:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm publish
+
+      - name: Checke the cache
+        uses: actions/cache@v2
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{runner.OS}}-${{hashFiles('**/yarn.lock')}}
+
+      - name: Install
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: |
+          yarn install
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Update version
+        id: version
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: version
+
+      - name: Publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+      # - name: Create GitHub Release
+      #   id: create_release
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v${{steps.version.outputs.value}}
+      #     release_name: v${{steps.version.outputs.value}}
+      #     body: ${{steps.description.outputs.content}}
+      #     draft: false
+      #     prerelease: false

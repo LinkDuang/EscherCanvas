@@ -9,7 +9,7 @@
 // 第二种是一个多边形，只不过只有三个顶点的多边形而已
 // 先只在 2d 领域使用这种三角形
 import Vector from '../classes/vector'
-import ObjectPrototype from '../classes/objectPrototype'
+import ObjectPrototype from '../classes/model.prototype'
 
 class Triangle extends ObjectPrototype {
   constructor(props) {

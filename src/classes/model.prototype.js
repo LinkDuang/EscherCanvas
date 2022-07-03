@@ -1,4 +1,4 @@
-class ObjectPrototype {
+class ModelPrototype {
     constructor() {
         this.child = null
         this.useUpdate = {}
@@ -50,4 +50,4 @@ class ObjectPrototype {
     }
 }
 
-export default ObjectPrototype
+export default ModelPrototype
